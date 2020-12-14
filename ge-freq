@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#get freq of radio to display in conky
+#20191217 km4ack
+
+source $HOME/patmenu2/config
+
+MAIN () {
+
+FREQ=$($RIG f)
+FREQCH=$(echo $FREQ | grep error)
+
+if [ -z "$FREQCH" ]
+then
+echo $FREQ
+echo ${FREQ:0:-2}/10000| bc -l | xargs printf "%.3f.${FREQ: -2}\n"
+#echo $FREQ
+else
+MAIN
+fi
+}
+
+MAIN
