@@ -6,6 +6,8 @@ sed -n -r -e 's!^.*<solarflux>(.*)</solarflux>.*$!\1!p' solarrss.php > s-flux.tx
 
 sed -n -r -e 's!^.*<aindex>(.*)</aindex>.*$!\1!p' solarrss.php > a-index.txt
 
+sed -n -r -e 's!^.*<kindex>(.*)</kindex>.*$!\1!p' solarrss.php > k-index.txt
+
 sed -n -r -e 's!^.*<sunspots>(.*)</sunspots>.*$!\1!p' solarrss.php > sunspots.txt
 
 sed -n -r -e 's!^.*<signalnoise>(.*)</signalnoise>.*$!\1!p' solarrss.php > sig-noise.txt
@@ -13,6 +15,8 @@ sed -n -r -e 's!^.*<signalnoise>(.*)</signalnoise>.*$!\1!p' solarrss.php > sig-n
 sed -n -r -e 's!^.*<muf>(.*)</muf>.*$!\1!p' solarrss.php > muf.txt
 
 sed -n -r -e 's!^.*<geomagfield>(.*)</geomagfield>.*$!\1!p' solarrss.php > geomag.txt
+
+sed -n -r -e 's!^.*<solarwind>(.*)</solarwind>.*$!\1!p' solarrss.php > s-wind.txt
 
 
 rm solarrss.php
