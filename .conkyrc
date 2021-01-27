@@ -10,8 +10,8 @@ own_window_type normal
 own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
-minimum_size  300
-maximum_width 300
+minimum_size  340
+maximum_width 340
 draw_shades no
 draw_borders no
 draw_outline no
@@ -52,7 +52,7 @@ ${voffset -85}
 
 #${color grey}
 #${font}
-${font Arial:bold:size=12}${color Yellow}SYSTEM ${color DarkSlateGray} ${hr 2}
+${font Arial:bold:size=10}${color Yellow}SYSTEM ${color DarkSlateGray} ${hr 2}
 ${font Arial:bold:size=10}${color White}Frequency $alignr${freq_g cpu0}Ghz
 ${font Arial:bold:size=10}${color White}Uptime $alignr${uptime}
 #${font Arial:bold:size=10}${color White}File System: $alignr${fs_type}
@@ -60,14 +60,17 @@ ${font Arial:bold:size=10}${color White}Uptime $alignr${uptime}
 ${font Arial:bold:size=10}${color White}Temp: $alignr ${exec /home/pi/Scripts/temp.sh}
 ${font Arial:bold:size=10}${color white}Kernel:$alignr $sysname $kernel 
 
-${font Arial:bold:size=12}${color Yellow}SOLAR INFO${color DarkSlateGray} ${hr 2}
-${font Arial:size=11}${color white}Solar Flux Index: $alignr ${execi 180 cat  /home/pi/Scripts/s-flux.txt}
-${font Arial:size=11}${color white}A Index: $alignr ${execi 180 cat  /home/pi/Scripts/a-index.txt}
-${font Arial:size=11}${color white}Sunspots: $alignr ${execi 180 cat /home/pi/Scripts/sunspots.txt}
-${font Arial:size=11}${color white}Signal Noise: $alignr ${execi 180 cat /home/pi/Scripts/sig-noise.txt}
-${font Arial:size=11}${color white}MUF: $alignr ${execi 180 cat /home/pi/Scripts/muf.txt}
-${font Arial:size=11}${color white}GeoMag Field: $alignr ${execi 180 cat /home/pi/Scripts/geomag.txt}
-#$alignr $machine
+${font Arial:bold:size=10}${color Yellow}SOLAR INFO${color DarkSlateGray} ${hr 2}
+${font Arial:size=10}${color white}SFI: ${color yellow}${execi 180 cat  /home/pi/Scripts/s-flux.txt} $alignr${font Arial:size=10}${color white}A: ${color yellow}${execi 180 cat  /home/pi/Scripts/a-index.txt}
+${font Arial:size=10}${color white}Sunspots: ${color yellow}${execi 180 cat /home/pi/Scripts/sunspots.txt} $alignr ${font Arial:size=10}${color white}K: ${color yellow}${execi 180 cat  /home/pi/Scripts/k-index.txt}
+${font Arial:size=10}${color white}MUF: ${color yellow}${execi 180 cat /home/pi/Scripts/muf.txt} $alignr ${font Arial:size=10}${color white}GeoMag: ${color yellow}${execi 180 cat /home/pi/Scripts/geomag.txt}
+${font Arial:size=10}${color white}Winds: ${color yellow}${execi 180 cat /home/pi/Scripts/s-wind.txt} $alignr${font Arial:size=10}${color white}Noise: ${color yellow}${execi 180 cat /home/pi/Scripts/sig-noise.txt}
+
+${font Arial:bold:size=10}${color yellow}HF BAND CONDITIONS${color DarkSlateGray} ${hr 2}
+${font Arial:size=10}${color white}80m-40m Day: ${if_existing /home/pi/Scripts/band80-40day.txt Good} ${color Green}Good${endif} ${if_existing /home/pi/Scripts/band80-40day.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band80-40day.txt Poor}${color Red}Poor${endif}${color white}  ${alignr}Night: ${if_existing /home/pi/Scripts/band80-40night.txt Good}${color Green}Good  ${endif}${if_existing /home/pi/Scripts/band80-40night.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band80-40night.txt Poor}${color Red}Poor  ${endif}
+${font Arial:size=10}${color white}30m-20m Day: ${if_existing /home/pi/Scripts/band30-20day.txt Good} ${color Green}Good${endif} ${if_existing /home/pi/Scripts/band30-20day.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band30-20day.txt Poor}${color Red}Poor${endif}${color white}  ${alignr}Night: ${if_existing /home/pi/Scripts/band30-20night.txt Good}${color Green}Good  ${endif}${if_existing /home/pi/Scripts/band30-20night.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band30-20night.txt Poor}${color Red}Poor  ${endif} 
+${font Arial:size=10}${color white}17m-15m Day: ${if_existing /home/pi/Scripts/band17-15day.txt Good} ${color Green}Good${endif} ${if_existing /home/pi/Scripts/band17-15day.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band17-15day.txt Poor}${color Red}Poor${endif}${color white}  ${alignr}Night: ${if_existing /home/pi/Scripts/band17-15night.txt Good}${color Green}Good  ${endif}${if_existing /home/pi/Scripts/band17-15night.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band17-15night.txt Poor}${color Red}Poor  ${endif} 
+${font Arial:size=10}${color white}12m-10m Day: ${if_existing /home/pi/Scripts/band12-10day.txt Good} ${color Green}Good${endif} ${if_existing /home/pi/Scripts/band12-10day.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band12-10day.txt Poor}${color Red}Poor${endif}${color white}  ${alignr}Night: ${if_existing /home/pi/Scripts/band12-10night.txt Good}${color Green}Good  ${endif}${if_existing /home/pi/Scripts/band12-10night.txt Fair}${color Yellow}Fair${endif}${if_existing /home/pi/Scripts/band12-10night.txt Poor}${color Red}Poor  ${endif}
 
 #${voffset -10}
 #${color DarkSlateGray} ${hr 2}
@@ -86,9 +89,9 @@ ${font Arial:bold:size=10}${color Yellow}NETWORK/HOTSPOT ${color DarkSlateGray}$
 #${font Arial:bold:size=8}${color white}External IP ${alignr}${execi 60 curl  ifconfig.me}
 ${font Arial:bold:size=8}${color White}Wired IP address $alignr ${addr eth0}
 ${font Arial:bold:size=8}${color White}Wireless IP address $alignr ${addr wlan0}
-${font Arial:bold:size=8}Down: ${downspeedf wlan0} KB/s  $alignr Up: ${upspeedf wlano} KB/s
-${font Arial:bold:size=8}${color white}Downloaded: ${totaldown wlan0} $alignr ${color white}Uploaded: ${totalup wlan0}
-${font Arial:bold:size=8}BitRate: $alignr ${wireless_bitrate wlan0}
+#${font Arial:bold:size=8}Down: ${downspeedf wlan0} KB/s  $alignr Up: ${upspeedf wlano} KB/s
+#${font Arial:bold:size=8}${color white}Downloaded: ${totaldown wlan0} $alignr ${color white}Uploaded: ${totalup wlan0}
+#${font Arial:bold:size=8}BitRate: $alignr ${wireless_bitrate wlan0}
 ${font Arial:bold:size=8}SSID: ${alignr}${wireless_essid wlan0}
 ${font Arial:bold:size=8}wifi quality: ${wireless_link_qual_perc wlan0}%${alignr}${wireless_link_qual wlan0} / ${wireless_link_qual_max wlan0}
 
@@ -98,20 +101,23 @@ ${font Arial:bold:size=8}${color White}${execi 5 cat /var/lib/misc/dnsmasq.lease
 ${font Arial:bold:size=10}${color Yellow}RADIO APPS ${color DarkSlateGray}${hr 2}
 ${font Arial:size=8}${if_running piardopc}${color green}ARDOP ACTIVE${else}${color red}ARDOP OFF$endif \
 ${alignr}${if_running rigctld}${color green}RIGCTL ACTIVE${else}${color red}RIGCTL OFF$endif
-${if_running wsjtx}${color green}WSJT-X ACTIVE${else}${color red}WSJT-X OFF$endif \
-${alignr}${if_running direwolf}${color green}DIREWOLF ACTIVE${else}${color red}DIREWOLF OFF$endif
-${if_running GridTracker}${color green}GRIDTRACKER ACTIVE${else}${color red}GRIDTRACKER OFF$endif \
-${alignr}${if_running jtdx}${color green}JTDX ACTIVE${else}${color red}JTDX OFF$endif
-${font Arial:size=8}${if_running js8call}${color green}JS8CALL ACTIVE${else}${color red}JS8CALL OFF$endif \
-${alignr}${if_running flrig}${color green}FLRIG ACTIVE${else}${color red}FLRIG OFF$endif
-${if_running garim}${color green}GARIM ACTIVE${else}${color red}GARIM OFF$endif \
-${alignr}${if_running fldigi}${color green}FLDIGI ACTIVE${else}${color red}FLDIGI OFF$endif
+#${if_running wsjtx}${color green}WSJT-X ACTIVE${else}${color red}WSJT-X OFF$endif \
+#${alignr}${if_running direwolf}${color green}DIREWOLF ACTIVE${else}${color red}DIREWOLF OFF$endif
+#${if_running GridTracker}${color green}GRIDTRACKER ACTIVE${else}${color red}GRIDTRACKER OFF$endif \
+#${alignr}${if_running jtdx}${color green}JTDX ACTIVE${else}${color red}JTDX OFF$endif
+#${font Arial:size=8}${if_running js8call}${color green}JS8CALL ACTIVE${else}${color red}JS8CALL OFF$endif \
+#${alignr}${if_running flrig}${color green}FLRIG ACTIVE${else}${color red}FLRIG OFF$endif
+#${if_running garim}${color green}GARIM ACTIVE${else}${color red}GARIM OFF$endif \
+#${alignr}${if_running fldigi}${color green}FLDIGI ACTIVE${else}${color red}FLDIGI OFF$endif
 ${if_running pavucontrol}${color green}PULSE ACTIVE${else}${color red}PULSE OFF$endif \
 ${alignr}${if_running pat}${color green}PAT ACTIVE${else}${color red}PAT OFF$endif
 ${color DarkSlateGray} ${hr 2}
-${font Arial:bold:size=10}${color yellow}10 MOST RECENT QSO'S 
+${font Arial:bold:size=10}${color yellow}5 MOST RECENT QSO'S 
 #${font Arial:bold:size=10}${color White}${tail ~/Documents/mylog.txt 5}
-${font Arial:bold:size=8}${color green}${tail /home/pi/.local/share/WSJT-X/wsjtx.log 10}
+#${font Arial:bold:size=8}${color green}${tail /home/pi/.local/share/WSJT-X/wsjtx.log 5}
+${font Arial:size=10}${color green}${exec tail -5 /home/pi/.local/share/WSJT-X/wsjtx_log.adi  | sed 's/<[a-zA-Z0-9:_]*//g' | column -t -s ">"}
 
-
+${font Arial:bold:size=10}${color yellow}RECENT LOG ENTRIES 
+${font Arial:bold:size=10}${color White}${tail ~/Documents/mylog.txt 4}
+#${image ~/Scripts/solarpich.gif -p 0,0 -f 30 -n}
 #$diskio
