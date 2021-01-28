@@ -32,13 +32,13 @@ DIR=$1
 fi
 
 #create backup dir
-mkdir $DIR/$BKUPTIME
+mkdir $DIR/WinLink/$BKUPTIME
 
 #copy file to backup dir
-cp -r $HOME/.wl2k/mailbox/$CALL/* $DIR/$BKUPTIME
+cp -r $HOME/.wl2k/mailbox/$CALL/* $DIR/WinLink/$BKUPTIME
 
 #verify success and write to log file
-if [ -d "$DIR/$BKUPTIME/in" ]; then
+if [ -d "$DIR/WinLink/$BKUPTIME/in" ]; then
 echo "$DATE Winlink messages backed up to $DIR" >> $HOME/Documents/mylog.txt
 else
 echo "$DATE Winlink backup failed" >> $HOME/Documents/mylog.txt

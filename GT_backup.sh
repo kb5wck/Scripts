@@ -18,7 +18,7 @@ DIR=$(ls /media/pi)
     #verify we have anexternal drive to work with
     if [ -z $DIR ]; then
     echo "External drive not found." 
-    echo "$DATE WSJT-X backup failed. Path not set and external drive not found" >> $HOME/Documents/mylog.txt
+    echo "$DATE GridTracker backup failed. Path not set and external drive not found" >> $HOME/Documents/mylog.txt
     exit 1
     fi
 DIR=/media/pi/$DIR
@@ -27,14 +27,14 @@ DIR=$1
 fi
 
 #create backup dir
-mkdir $DIR/WSJT-X/$BKUPTIME
+mkdir $DIR/GridTracker/$BKUPTIME
 
 #copy file to backup dir
-cp -r $HOME/.local/share/WSJT-X/* $DIR/WSJT-X/$BKUPTIME
+cp -r $HOME/Documents/GridTracker/* $DIR/GridTracker/$BKUPTIME
 
 #verify success and write to log file
-if [ -d "$DIR/WSJT-X/$BKUPTIME/save" ]; then
-echo "$DATE WSJT-X messages backed up to $DIR" >> $HOME/Documents/mylog.txt
+if [ -d "$DIR/Gridtracker/$BKUPTIME/media" ]; then
+echo "$DATE Gridtracker messages backed up to $DIR" >> $HOME/Documents/mylog.txt
 else
-echo "$DATE WSJT-X backup failed" >> $HOME/Documents/mylog.txt
+echo "$DATE GridTracker backup failed" >> $HOME/Documents/mylog.txt
 fi
