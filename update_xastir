@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# File yo update weather and callsign info for xastir
+
+# update weather
+sudo /usr/local/share/scripts/xastir/get-NWSdata
+
+# update US and Canadian callsigns
+sudo /usr/local/share/xastir/scripts/get-fcc-rac.pl
