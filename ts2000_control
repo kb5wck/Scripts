@@ -2,10 +2,9 @@
 
 #script for controlling power on TS-2000
 #based on work by Eric Wiessner (KI7POL)
-#20200226 km4ack
-#20210325 KB5WCK
+#20221104 KB5WCK
 
-#Define 891 rig contol command
+#Define TS-2000 rig contol command
 RIG="/usr/bin/rigctl -m 214 -r /dev/ttyUSB1 -s 9600"
 
 RIGNUM=$(echo $RIG | awk '{ print $3 }')
