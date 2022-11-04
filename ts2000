@@ -1,0 +1,60 @@
+#!/bin/bash
+
+RIG="/usr/local/bin/rigctl -m 2014 -r /dev/ttyUSB0 -s 9600"
+
+RIGNUM=$(echo $RIG | awk '{ print $3 }')
+
+RIGNAME=$(/usr/local/bin/rigctl -l | grep "$RIGNUM" | awk '{ print $2 " " $3 }')
+
+echo RIGNUM = $RIGNUM
+echo RIGNAME = $RIGNAME
+
+STATE() {
+clear
+echo "Getting status of the radio"
+echo "Please standby........."
+echo "This can take a bit"
+
+#set the current status
+STATUS=$($RIG get_powerstat)
+
+if [ $STATUS = '0' ]
+then
+STATUS="Powered Off"
+elif [ $STATUS = '1' ]
+then
+STATUS="Powered On"
+elif [ $STATUS = '2' ]
+then
+STATUS="Power Standby"
+fi
+
+echo "---------- Current State of "RIGNAE" ---------"
+echo "                  $STATUS                     "
+echo "----------------------------------------------"
+
+options=("Power On" "Power Off" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Power On")
+	    echo "Stand by while radio is powered on"
+            $RIG set_powerstat 1
+	    STATE
+            ;;
+        "Power Off")
+	    echo "Stand by while radio is powered off"
+	    $RIG set_powerstat 0
+	    STATE
+            ;;
+        "Exit")
+	    echo "---------- Current State of "RIGNAE" ---------"
+	    echo "                  $STATUS                     "
+	    echo "----------------------------------------------"
+            exit 0
+	    ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+}
+STATE
