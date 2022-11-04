@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#script for controlling power on TS-2000
+#based on work by Eric Wiessner (KI7POL)
+#20221104 KB5WCK
+
+#Define TS-2000 rig contol command
 RIG="/usr/local/bin/rigctl -m 2014 -r /dev/ttyUSB0 -s 9600"
 
 RIGNUM=$(echo $RIG | awk '{ print $3 }')
